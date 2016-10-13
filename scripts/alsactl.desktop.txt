@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=alsactl --file /var/lib/alsa/asound.state restore 1
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[es_ES]=Arreglar Volumen
+Name=Arreglar Volumen
+Comment[es_ES]=
+Comment=
