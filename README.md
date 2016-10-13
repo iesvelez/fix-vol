@@ -9,7 +9,7 @@ Conjunto de shell scripts que ayudan a mantener la configuración de sonido de l
 
 ## Instrucciones
 
-### Instalar el la utilidad
+### Instalación
 
 Para instalar los scripts:
 
