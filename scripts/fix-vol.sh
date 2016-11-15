@@ -1,25 +1,19 @@
 #! /bin/bash
 
-########################################################################
-#
-# Configuración
-#
-########
+DEVS=`lsusb | grep 0d48 | wc -l`
 
-source /home/scripts/sdi.conf
+if [ ! $DEVS -eq 2 ]
+then
+    zenity --info --text="Pizarra no detectada. ¡Conéctela primero!"
+else
+	#pacmd list-sinks
+	#pacmd set-default-sink "SINKNAME"
+	#pacmd set-default-sink "SINKNAME"
 
+	#pacmd set-sink-volume index volume
+	#pacmd set-sink-volume 0 65536
 
-########################################################################
-#
-# Conectar con servidor
-#
-########
+    alsactl --file /var/lib/alsa/asound.state restore 1
+    zenity --info --text="Volumen corregido"
+fi
 
-#SERVER=`avahi-browse -trpk _vnc._tcp | grep $DEVICE | grep = | grep IPv4 | cut -d ";" -f 8`
-#PORT=`avahi-browse -trpk _vnc._tcp | grep $DEVICE | grep = | grep IPv4 | cut -d ";" -f 9`
-
-SERVER=`avahi-browse -trpk _vnc._tcp | grep $DEVICE | grep = | tail -n 1 | cut -d "(" -f 2 | cut -d ")" -f 1`
-PORT=`avahi-browse -trpk _vnc._tcp | grep $DEVICE | grep = | tail -n 1 | cut -d ";" -f 9`
-
-echo "Conectando con $SERVER:$PORT..."
-echo $AUTH | xtightvncviewer -autopass $SERVER:$PORT
